@@ -1,0 +1,38 @@
+create database test_music;
+
+//‚±‚±‚Å use test_music ‚ð‚·‚é
+
+create table User(
+    user_id char(10) primary key,
+    name varchar(20) not null,
+    telnum varchar(11) not null,
+    birthday date not null,
+    gender bit not null,
+    user_lv bit default 1 not null
+);
+
+
+create table Login(
+    user_id char(10) primary key,
+    password varchar(32) not null,
+    foreign key(user_id)
+        references User(user_id)
+);
+
+
+create table music_genre(
+    category_id varchar(10) primary key,
+    category_name varchar(20) not null
+);
+
+create table Music_infomation(
+    music_id varchar(10) primary key,
+    category_id varchar(10) not null,
+    title varchar(50) not null,
+    artist varchar(50),
+    auther varchar(50),
+    release_day date,
+    music_path varchar(60) not null,
+    foreign key(category_id)
+        references music_genre(category_id)
+);
